@@ -169,8 +169,9 @@
         var nextDiv, count = 0;
         var myInterval = setInterval(function () {
             currentDiv = ""
-            if ($('#tabular .row').length == count) {
+            if ($('#tabular .row').length == count+1) {
                 $("#tabular .row:gt(0)").hide();
+                $('#tabular .row').eq(0).show();
                 count = 0;
             } else {
                 act = count + 1;
@@ -256,12 +257,13 @@
                             <div class="header" style="padding: 15px 15px 20px;">
                                 <i class="fa fa-trophy fa-2x" style="width: 100%; color: darkgoldenrod;"><font
                                         color="black"> Performer of the Week</font></i>
+
                             </div>
+                            {%  for performer in weak_topper %}
                             <div class="content center-block">
                                 <img src="{% static 'images.png' %}" alt="Avatar"
                                      style="">
-                                <h4 style="line-height: 85px; text-align: center; font-weight: 600;">Aanshik
-                                    Sharma</h4>
+                                <h4 style="line-height: 85px; text-align: center; font-weight: 600;">{{performer.username}}</h4>
 
                                 <div class="footer">
                                     <div class="row minus-margin">
@@ -269,7 +271,7 @@
                                             <ul class="expense-box">
                                                 <li class="block p-0 text-info">
                                                     <div class="text-center"><p>
-                                                        <span style="font-size: x-large;">0</span><br>
+                                                        <span style="font-size: x-large;">{{performer.submission}}</span><br>
                                                         <small style="font-weight: 600;">Submission</small>
                                                     </p></div>
                                                 </li>
@@ -279,7 +281,7 @@
                                             <ul class="expense-box text-warning">
                                                 <li class="block p-0">
                                                     <div class="text-center"><p>
-                                                        <span style="font-size: x-large;"> 7</span><br> <small
+                                                        <span style="font-size: x-large;"> {{performer.interview}}</span><br> <small
                                                             style="font-weight: 600;">Interviewed</small>
                                                     </p></div>
                                                 </li>
@@ -289,8 +291,8 @@
                                             <ul class="expense-box text-success">
                                                 <li class="block p-0">
                                                     <div class="text-center"><p>
-                                                        <span style="font-size: x-large;">1</span> <br> <small
-                                                            style="font-weight: 600;">Offers</small>
+                                                        <span style="font-size: x-large;">{{performer.offers}}</span> <br> <small
+                                                            style="font-weight: 600;">offers</small>
                                                     </p></div>
                                                 </li>
                                             </ul>
@@ -298,6 +300,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
