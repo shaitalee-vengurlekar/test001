@@ -25,7 +25,7 @@ SECRET_KEY = 'xy&9srmu9yll&v1(e8px9lculmyiou1nvtoi^q$778&pfnk9+6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.28', '127.0.0.1', '172.24.2.27']
+ALLOWED_HOSTS = ['salty-dusk-52762.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'LSD.urls'
@@ -84,7 +85,7 @@ DATABASES = {
         'USER': 'vats_test',
         'PASSWORD': 'verti@123',
         'HOST': 'ec2-13-233-3-168.ap-south-1.compute.amazonaws.com',   # Or an IP Address that your DB is hosted on
-        'PORT': '330',
+        'PORT': '3306',
     }
 }
 
@@ -130,7 +131,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR
