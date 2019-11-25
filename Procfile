@@ -1,0 +1,1 @@
+web: gunicorn LSD.wsgi --log-file -
