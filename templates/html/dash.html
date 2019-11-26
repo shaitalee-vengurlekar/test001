@@ -44,7 +44,7 @@
     <script>
          setTimeout(function(){
             window.location.href = '{% url 'piedata' %}';
-         }, 40000);
+         }, 21000);
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
@@ -84,15 +84,15 @@
 <div class="wrapper">
 
     <div class="main-panel" style="width: calc(100%); height: 100%;">
-        <nav class="navbar navbar-default navbar-fixed" style="background-image: linear-gradient(45deg, transparent 10%, #808080 100%);">
+        <nav class="navbar navbar-default navbar-fixed" style="background-image: linear-gradient(45deg, transparent 10%, #808080 100%); height: 62px;">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" style="">
-                        <img src="{% static 'Logo1.png' %}" class="logo" alt="logo" style="height: 59px; margin-top: -17px;">
+                        <img src="{% static 'Logo1.png' %}" class="logo" alt="logo" style="height: 66px; margin-top: -17px;">
                     </a>
                 </div>
                 <div class="nav navbar-nav navbar-right" style="margin-top: 20px; margin-right: 4px;">
-                    <span id='ct' style="color: currentColor; font-weight: 900;"></span>
+                    <span id='ct' style="color: currentColor; font-weight: 900; font-size: x-large;"></span>
                 </div>
             </div>
         </nav>
@@ -162,6 +162,7 @@
     {% endfor %}
     Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = '#292b2c';
+    Chart.defaults.global.elements.point.radius = 4;
     var ctx = document.getElementById("myBarChart");
     var myLineChart = new Chart(ctx, {
         type: 'bar',
@@ -170,64 +171,48 @@
             datasets: [{
                 label: "Submissions",
                 backgroundColor: [
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080'
+                    '#7394CB',
+                    '#E1974D',
+                    '#84BB5C',
+                    '#D35D60',
+                    '#818787',
+                    '#9066A7',
+                    '#AD6A58',
+                    '#CCC374',
+                    '#7394CB',
+                    '#E1974D',
+                    '#84BB5C',
+                    '#D35D60',
+                    '#818787',
+                    '#9066A7',
+                    '#AD6A58',
+                    '#CCC374',
+                    '#D35D60',
+                    '#818787',
+                    '#9066A7',
+                    '#AD6A58'
                 ],
                 borderColor: [
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080',
-                    '#00FFFF',
-                    '#FF4500',
-                    '#C71585',
-                    '#808080'
+                    '#7394CB',
+                    '#E1974D',
+                    '#84BB5C',
+                    '#D35D60',
+                    '#818787',
+                    '#9066A7',
+                    '#AD6A58',
+                    '#CCC374',
+                    '#7394CB',
+                    '#E1974D',
+                    '#84BB5C',
+                    '#D35D60',
+                    '#818787',
+                    '#9066A7',
+                    '#AD6A58',
+                    '#CCC374',
+                    '#D35D60',
+                    '#818787',
+                    '#9066A7',
+                    '#AD6A58'
                 ],
                 data: Array.from(res1),
             }],
@@ -289,7 +274,7 @@
     <!-- Function for ajax calling -->
 
     $(function () {
-        var nre = setInterval(checkit, 10000);
+        var nre = setInterval(checkit, 3000);
 
         function checkit() {
             $.ajax({
@@ -339,64 +324,48 @@
                             datasets: [{
                                 label: "Submissions",
                                 backgroundColor: [
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080'
+                                    '#7394CB',
+                                    '#E1974D',
+                                    '#84BB5C',
+                                    '#D35D60',
+                                    '#818787',
+                                    '#9066A7',
+                                    '#AD6A58',
+                                    '#CCC374',
+                                    '#7394CB',
+                                    '#E1974D',
+                                    '#84BB5C',
+                                    '#D35D60',
+                                    '#818787',
+                                    '#9066A7',
+                                    '#AD6A58',
+                                    '#CCC374',
+                                    '#D35D60',
+                                    '#818787',
+                                    '#9066A7',
+                                    '#AD6A58'
                                 ],
                                 borderColor: [
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080',
-                                    '#00FFFF',
-                                    '#FF4500',
-                                    '#C71585',
-                                    '#808080'
+                                    '#7394CB',
+                                    '#E1974D',
+                                    '#84BB5C',
+                                    '#D35D60',
+                                    '#818787',
+                                    '#9066A7',
+                                    '#AD6A58',
+                                    '#CCC374',
+                                    '#7394CB',
+                                    '#E1974D',
+                                    '#84BB5C',
+                                    '#D35D60',
+                                    '#818787',
+                                    '#9066A7',
+                                    '#AD6A58',
+                                    '#CCC374',
+                                    '#D35D60',
+                                    '#818787',
+                                    '#9066A7',
+                                    '#AD6A58'
                                 ],
                                 data: Array.from(res1),
                             }],

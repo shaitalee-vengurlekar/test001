@@ -53,16 +53,22 @@
     <script>
         setTimeout(function () {
             window.location.href = '{% url 'dash' %}';
-        }, 170000);
+        }, 140000);
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <style>
         @media only screen and (min-width: 1300px) {
-            .content img {
+            .content .img2 {
                 border-radius: 50%;
                 width: 200px;
                 margin-left: 21%;
+            }
+
+            .img1 {
+                border-radius: 50%;
+                width: 12%;
+                margin-left: 10px;
             }
 
             .card .footer {
@@ -71,10 +77,43 @@
         }
 
         @media only screen and (min-width: 1900px) {
-            .content img {
+            .content .img2 {
                 border-radius: 50%;
                 width: 200px;
                 margin-left: 32%;
+            }
+            .customcard1 {
+                box-shadow: 0 17px 11px 0 rgba(0, 0, 0, 0.2);
+                max-width: 452px;
+                margin: auto;
+                text-align: left;
+                font-family: arial;
+                display: flex;
+                height: 7%;
+                margin-bottom: 40px;
+                margin-top: 20px;
+                transform: skew(-20deg);
+                background-color: whitesmoke;
+                width: 100%;
+                padding: 16px;
+            }
+            .ali {
+                font-size: xx-large;
+            }
+
+            .img1 {
+                border-radius: 50%;
+                width: 12%;
+                margin-left: 10px;
+            }
+
+            .col-xs-4 {
+                width: 100%;
+                margin-left: 1%;
+            }
+
+            ul{
+                text-align: center;
             }
 
             .headd {
@@ -92,10 +131,16 @@
         }
 
         @media screen and (width: 1280px) {
-            .content img {
+            .content .img2 {
                 margin-left: 14%;
                 border-radius: 50%;
                 width: 200px;
+            }
+
+            .img1 {
+                border-radius: 50%;
+                width: 12%;
+                margin-left: 10px;
             }
 
             .headd {
@@ -107,17 +152,6 @@
                 font-size: large;
             }
 
-        }
-
-        @font-face {
-            font-family: 'BeyondTheMountains';
-            src: {% static 'assets/fonts/BeyondTheMountains.eot' %},
-            {% static 'assets/fonts/BeyondTheMountains.otf' %},
-            {% static 'assets/fonts/BeyondTheMountains.woff' %},
-            {% static 'assets/fonts/BeyondTheMountains.ttf'  %},
-        {% static 'assets/fonts/BeyondTheMountains.svg' %};
-            font-weight: normal;
-            font-style: normal;
         }
 
         .card .content {
@@ -162,6 +196,17 @@
             font-size: large;
             font-weight: bolder;
         }
+
+        .user-banner {
+                position: absolute;
+                left: -116px;
+                bottom: 895px;
+                background: #febd49;
+                width: 385px;
+                color: #fff;
+                transform: rotate(-45deg);
+                z-index: 10;
+        }
     </style>
 
     <script>
@@ -180,7 +225,7 @@
                 currentDiv.show();
                 count = count + 1;
             }
-        }, 4000);
+        }, 8000);
 
 
         $(function () {
@@ -211,9 +256,9 @@
                 $("#tabular").append("<div class='row'><div class='headd' style='border-radius: 35px; text-align: center; font-size: x-large;  height: 10%; background-image: linear-gradient(45deg, lightblue, transparent);'><i class='fa fa-users' style='color: #00BFFF;'></i>&nbsp;&nbsp;&nbsp;" + title + "'s Team</div><div class='col-md-6' id='" + firstname[0] + "odd'></div><div class='col-md-6' id='" + firstname[0] + "even'></div></div>");
                 for (i = 0; i < username.length; i++) {
                     if (i % 2 == 0) {
-                        $("#" + firstname[0] + "odd").append("<div class='customcard'><p class='col-md-10'>" + username[i] + "</p> <button class='button button5 col-md-2'>" + count[i] + "</button> </div>");
+                        $("#" + firstname[0] + "odd").append("<div class='customcard'><img class='img1' src='{% static 'images.png' %}' alt='Avatar'><p class='col-md-10'>" + username[i] + "</p> <button class='button button5 col-md-2'>" + count[i] + "</button> </div>");
                     } else {
-                        $("#" + firstname[0] + "even").append("<div class='customcard'><p class='col-md-10'>" + username[i] + "</p> <button class='button button5 col-md-2'>" + count[i] + "</button> </div>");
+                        $("#" + firstname[0] + "even").append("<div class='customcard'><img class='img1' src='{% static 'images.png' %}' alt='Avatar'><p class='col-md-10'>" + username[i] + "</p> <button class='button button5 col-md-2'>" + count[i] + "</button> </div>");
                     }
 
                 }
@@ -238,12 +283,10 @@
                     <a class="navbar-brand" href="#" style="">
                         <img src="{% static 'Logo1.png' %}" class="logo" alt="logo"
                              style="height: 75px; margin-top: -18px;">
-                        {#                        <h1 style="font-family: 'BeyondTheMountains'; font-weight: 300; margin: -9px 0px 0px; font-size: 40px;">#}
-                        {#                            <font style="color: red;">VERTI</font><font style="color: black;">SYSTEM</font></h1>#}
                     </a>
                 </div>
-                <div class="nav navbar-nav navbar-right" style="margin-top: 28px; margin-right: 4px;">
-                    <span id='ct' style="color: currentColor; font-weight: 900;"></span>
+                <div class="nav navbar-nav navbar-right" style="margin-top: 25px; margin-right: 4px;">
+                    <span class="tme" id='ct' style="color: currentColor; font-weight: 900; font-size: x-large"></span>
                 </div>
             </div>
         </nav>
@@ -252,55 +295,42 @@
         <div class="content" style="padding: 8px 3px; min-height: calc(100% - 74px);">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4" style="overflow: hidden; padding-left: 0px;">
                         <div class="card">
-                            <div class="header" style="padding: 15px 15px 20px;">
-                                <i class="fa fa-trophy fa-2x" style="width: 100%; color: darkgoldenrod;"><font
-                                        color="black"> Performer of the Week</font></i>
-
+                            <div class="header" style="padding: 15px 15px 20px;text-align: center; margin-left: 60px;">
+                                <span class="user-banner"><marquee behaviour="slide" direction="left" scrollamount="7" style="width: 30%;" ><i class="fa fa-trophy fa-3x" style="width: 100%;"></i></marquee></span>
+                                <span style="text-shadow: 4px -1px black; color: black; text-align: right; font-size: xx-large"> Performer of the Week</span>
                             </div>
-                            {%  for performer in weak_topper %}
-                            <div class="content center-block">
-                                <img src="{% static 'images.png' %}" alt="Avatar"
-                                     style="">
-                                <h4 style="line-height: 85px; text-align: center; font-weight: 600;">{{performer.username}}</h4>
+                             {%  for performer in weak_topper %}
+                                <div class="content center-block">
+                                    <img class="img2" src="{% static 'images.png' %}" alt="Avatar"
+                                         style="">
+                                    <h4 style="line-height: 85px; text-align: center; font-weight: 600; font-size: xx-large;">{{performer.username}}</h4>
 
-                                <div class="footer">
-                                    <div class="row minus-margin">
-                                        <div class="col-xs-4 b-r">
-                                            <ul class="expense-box">
-                                                <li class="block p-0 text-info">
-                                                    <div class="text-center"><p>
-                                                        <span style="font-size: x-large;">{{performer.submission}}</span><br>
-                                                        <small style="font-weight: 600;">Submission</small>
-                                                    </p></div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class=" col-xs-4 b-r ">
-                                            <ul class="expense-box text-warning">
-                                                <li class="block p-0">
-                                                    <div class="text-center"><p>
-                                                        <span style="font-size: x-large;"> {{performer.interview}}</span><br> <small
-                                                            style="font-weight: 600;">Interviewed</small>
-                                                    </p></div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-4 b-r">
-                                            <ul class="expense-box text-success">
-                                                <li class="block p-0">
-                                                    <div class="text-center"><p>
-                                                        <span style="font-size: x-large;">{{performer.offers}}</span> <br> <small
-                                                            style="font-weight: 600;">offers</small>
-                                                    </p></div>
-                                                </li>
-                                            </ul>
+                                    <div class="footer">
+                                        <div class="row minus-margin">
+                                            <div class="col-xs-4 b-r">
+                                                <div class="customcard1" >
+                                                            <span class="col-md-10 ali" style="color:#41b3f9">Submission</span>
+                                                            <span class="col-md-2 ali" style="color:#41b3f9">{{performer.submission}}</span>
+                                                </div>
+                                            </div>
+                                            <div class=" col-xs-4 b-r ">
+                                                <div class="customcard1 text-warning">
+                                                    <span class="col-md-10 ali">Interviewed</span>
+                                                    <span class="col-md-2 ali"> {{performer.interview}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4 b-r">
+                                                <div class="customcard1 text-success" >
+                                                    <span class="col-md-10 ali">offers</span>
+                                                    <span class="col-md-2 ali">{{performer.offers}}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            {% endfor %}
+                             {% endfor %}
                         </div>
                     </div>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
