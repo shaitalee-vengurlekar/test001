@@ -48,16 +48,6 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
-        @font-face {
-            font-family: 'BeyondTheMountains';
-            src: {% static 'assets/fonts/BeyondTheMountains.eot' %},
-            {% static 'assets/fonts/BeyondTheMountains.otf' %},
-            {% static 'assets/fonts/BeyondTheMountains.woff' %},
-            {% static 'assets/fonts/BeyondTheMountains.ttf'  %},
-        {% static 'assets/fonts/BeyondTheMountains.svg' %};
-            font-weight: normal;
-            font-style: normal;
-        }
 
         .card .content {
             padding: 5px 8px 5px 8px;
@@ -220,6 +210,7 @@
         options: {
             showTooltips: false,
             responsive: true,
+            maintainAspectRatio: false,
             title: {
                 display: true,
                 position: "top",
@@ -373,6 +364,7 @@
                         options: {
                             showTooltips: false,
                             responsive: true,
+                            maintainAspectRatio: false,
                             title: {
                                 display: true,
                                 position: "top",

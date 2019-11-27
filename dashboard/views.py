@@ -5,6 +5,10 @@ from django.db import connection
 from django.db.models import Max
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
+from PIL import Image
+import base64
+import PIL.Image
+
 
 import datetime
 from datetime import datetime
@@ -216,6 +220,7 @@ def dash(request):
 
 
 def high(request):
+    list3 =[]
     with connection.cursor() as c2:
         c2.execute(
               "select distinct (team_id) from( select title,username,team_id,updated_by,team_count from (SELECT t.title,ur.username, 							  "				
@@ -236,32 +241,33 @@ def high(request):
         print("pie data ajax", pie_data)
     with connection.cursor() as c3:
         c3.execute(
-                 "SELECT title, IFNULL(username,'TL') username,team_id,updated_by,count(*) team_count FROM(                                                          "
-                  "SELECT t.title,ur.username,al.entity_id,al.created_at,IF((al.action REGEXP 'Submitted'),1,                                                        "
-                  "NULL) AS submission,al.updated_by,al.data,                                                                                                        "
-                  "tem.team_id FROM activity_log al JOIN team_employee_map tem                                                                                       "
-                  "JOIN teams t on t.id = tem.team_id and t.status=1                                                                                                 "
-                  "JOIN user ur ON ur.id=tem.user_id and ur.status !=2 WHERE                                                                                         "
-                  "al.entity_type='resume' AND al.is_status_updated=0                                                                                                "
-                  "AND al.status=1 AND al.updated_by=tem.user_id and tem.status=1 )sub WHERE DATE_FORMAT(created_at,'%m/%e/%Y') = DATE_FORMAT(curdate()-1,'%m/%e/%Y')"
-                  "GROUP BY username,team_id                                                                                                                         "
-                  "UNION                                                                                                                                             "
-                  "select title,username,team_id,updated_by,team_count from (SELECT t.title,ur.username,                                                             "
-                  "tem.team_id,ur.id updated_by,0 team_count from team_employee_map tem                                                                              "
-                  "JOIN teams t on t.id = tem.team_id and t.status=1                                                                                                 "
-                  "JOIN user ur ON ur.id=tem.user_id and ur.status !=2 and tem.status=1 group by title,username,team_id order by tem.team_id )dl                     "
-                  "WHERE updated_by NOT IN (select updated_by from(SELECT title, IFNULL(username,'TL') username,team_id,updated_by,                                  "
-                  "count(*) team_count FROM(                                                                                                                         "
-                  "SELECT t.title,ur.username,al.entity_id,al.created_at,IF((al.action REGEXP 'Submitted'),1,                                                        "
-                  "NULL) AS submission,al.updated_by,al.data,                                                                                                        "
-                  "tem.team_id FROM activity_log al JOIN team_employee_map tem                                                                                       "
-                  "JOIN teams t on t.id = tem.team_id and t.status=1                                                                                                 "
-                  "JOIN user ur ON ur.id=tem.user_id and ur.status !=2 WHERE                                                                                         "
-                  "al.entity_type='resume' AND al.is_status_updated=0                                                                                                "
-                  "AND al.status=1 AND al.updated_by=tem.user_id and tem.status=1 )sub WHERE DATE_FORMAT(created_at,'%m/%e/%Y') = DATE_FORMAT(curdate()-1,'%m/%e/%Y')"
-                  "GROUP BY username,team_id order by team_id)s2 order by updated_by)ORDER BY team_id                                                                ")
+                  "SELECT title, IFNULL(username,'TL') username,avatar,team_id,updated_by,count(*) team_count FROM(                                                 "
+                 "SELECT t.title,ur.username,ur.avatar,al.entity_id,al.created_at,IF((al.action REGEXP 'Submitted'),1,                                              "         
+                 "NULL) AS submission,al.updated_by,al.data,                                                                                                        "
+                 "tem.team_id FROM activity_log al JOIN team_employee_map tem                                                                                       "
+                 "JOIN teams t on t.id = tem.team_id and t.status=1                                                                                                 "
+                 "JOIN user ur ON ur.id=tem.user_id and ur.status !=2 WHERE                                                                                         "
+                 "al.entity_type='resume' AND al.is_status_updated=0                                                                                                "
+                 "AND al.status=1 AND al.updated_by=tem.user_id and tem.status=1 )sub WHERE DATE_FORMAT(created_at,'%m/%e/%Y') = DATE_FORMAT(curdate(),'%m/%e/%Y')  "
+                 "GROUP BY username,team_id                                                                                                                         "
+                 "UNION                                                                                                                                             "
+                 "select title,username,avatar,team_id,updated_by,team_count from (SELECT t.title,ur.username,ur.avatar,                                            "                
+                 "tem.team_id,ur.id updated_by,0 team_count from team_employee_map tem                                                                              "
+                 "JOIN teams t on t.id = tem.team_id and t.status=1                                                                                                 "
+                 "JOIN user ur ON ur.id=tem.user_id and ur.status !=2 and tem.status=1 group by title,username,team_id order by tem.team_id )dl                     "
+                 "WHERE updated_by NOT IN (select updated_by from(SELECT title, IFNULL(username,'TL') username,avatar,team_id,updated_by,                           "      
+                 "count(*) team_count FROM(                                                                                                                         "
+                 "SELECT t.title,ur.username,ur.avatar,al.entity_id,al.created_at,IF((al.action REGEXP 'Submitted'),1,                                              "         
+                 "NULL) AS submission,al.updated_by,al.data,                                                                                                        "
+                 "tem.team_id FROM activity_log al JOIN team_employee_map tem                                                                                       "
+                 "JOIN teams t on t.id = tem.team_id and t.status=1                                                                                                 "
+                 "JOIN user ur ON ur.id=tem.user_id and ur.status !=2 WHERE                                                                                         "
+                 "al.entity_type='resume' AND al.is_status_updated=0                                                                                                "
+                 "AND al.status=1 AND al.updated_by=tem.user_id and tem.status=1 )sub WHERE DATE_FORMAT(created_at,'%m/%e/%Y') = DATE_FORMAT(curdate(),'%m/%e/%Y')  "
+                 "GROUP BY username,team_id order by team_id)s2 order by updated_by)ORDER BY team_id                                                                ")
         pie_data1 = dictfetchall(c3)
         print("pie data 1", pie_data1)
+
     with connection.cursor() as c4:
         c4.execute(
             "SELECT * FROM (SELECT ur.username,AL.entity_id, AL.updated_by,AL.action, AL.created_at, DATE_FORMAT(AL.created_at,'%u') AS week, "

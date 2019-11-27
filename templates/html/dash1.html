@@ -50,11 +50,11 @@
             display_c();
         }
     </script>
-    <script>
-        setTimeout(function () {
-            window.location.href = '{% url 'dash' %}';
-        }, 140000);
-    </script>
+{#    <script>#}
+{#        setTimeout(function () {#}
+{#            window.location.href = '{% url 'dash' %}';#}
+{#        }, 140000);#}
+{#    </script>#}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <style>
@@ -63,6 +63,45 @@
                 border-radius: 50%;
                 width: 200px;
                 margin-left: 21%;
+            }
+
+            .nam {
+                padding-top: 20px;
+            }
+
+            .customcard {
+                box-shadow: 0 17px 11px 0 rgba(0, 0, 0, 0.2);
+                max-width: 452px;
+                margin: auto;
+                text-align: left;
+                font-family: arial;
+                display: flex;
+                height: 12%;
+                margin-bottom: 40px;
+                margin-top: 20px;
+                transform: skew(-20deg);
+                background-image: linear-gradient(45deg, #0D97C6, transparent);
+            }
+
+            .custumhead {
+                padding: 3px 23px 3px;
+                text-align: right;
+            }
+
+            .card .content {
+                padding: 13px 43px 39px 43px;
+                height: calc(95%);
+            }
+
+            .user-banner {
+                position: absolute;
+                left: -55px;
+                bottom: 478px;
+                background: #febd49;
+                width: 200px;
+                color: #fff;
+                transform: rotate(-45deg);
+                z-index: 10;
             }
 
             .img1 {
@@ -82,6 +121,51 @@
                 width: 200px;
                 margin-left: 32%;
             }
+
+            .nam {
+                font-size: x-large;
+                padding-top: 17px;
+            }
+
+            .customcard {
+                box-shadow: 0 17px 11px 0 rgba(0, 0, 0, 0.2);
+                max-width: 510px;
+                margin: auto;
+                text-align: left;
+                font-family: arial;
+                display: flex;
+                height: 7%;
+                margin-bottom: 40px;
+                margin-top: 20px;
+                transform: skew(-20deg);
+                background-image: linear-gradient(45deg, #0D97C6, transparent);
+            }
+
+            .card .content {
+                padding: 59px 43px 32px 43px;
+                height: calc(95%);
+            }
+
+            marquee {
+                width: 30%;
+            }
+
+            .custumhead {
+                padding: 15px 15px 20px;
+                text-align: right;
+            }
+
+            .user-banner {
+                position: absolute;
+                left: -116px;
+                bottom: 895px;
+                background: #febd49;
+                width: 385px;
+                color: #fff;
+                transform: rotate(-45deg);
+                z-index: 10;
+            }
+
             .customcard1 {
                 box-shadow: 0 17px 11px 0 rgba(0, 0, 0, 0.2);
                 max-width: 452px;
@@ -137,6 +221,49 @@
                 width: 200px;
             }
 
+            .card .content {
+                padding: 25px 43px 32px 43px;
+                height: calc(95%);
+            }
+
+
+            .custumhead {
+                padding: 39px 15px 0;
+                text-align: right;
+            }
+
+            .user-banner {
+                position: absolute;
+                left: -55px;
+                bottom: 555px;
+                background: #febd49;
+                width: 200px;
+                color: #fff;
+                transform: rotate(-45deg);
+                z-index: 10;
+            }
+
+            .nam {
+                font-size: large;
+                padding-top: 14px;
+                font-weight: bolder;
+                padding-right: 0px;
+            }
+
+            .customcard {
+                box-shadow: 0 17px 11px 0 rgba(0, 0, 0, 0.2);
+                max-width: 510px;
+                margin: auto;
+                text-align: left;
+                font-family: arial;
+                display: flex;
+                height: 10%;
+                margin-bottom: 40px;
+                margin-top: 20px;
+                transform: skew(-20deg);
+                background-image: linear-gradient(45deg, #0D97C6, transparent);
+            }
+
             .img1 {
                 border-radius: 50%;
                 width: 12%;
@@ -154,10 +281,7 @@
 
         }
 
-        .card .content {
-            padding: 59px 43px 32px 43px;
-            height: calc(95%);
-        }
+
 
         .card {
             height: calc(100% - 108px);
@@ -197,16 +321,7 @@
             font-weight: bolder;
         }
 
-        .user-banner {
-                position: absolute;
-                left: -116px;
-                bottom: 895px;
-                background: #febd49;
-                width: 385px;
-                color: #fff;
-                transform: rotate(-45deg);
-                z-index: 10;
-        }
+
     </style>
 
     <script>
@@ -234,11 +349,13 @@
             var count = [];
             var title;
             var leg_username = [];
+            var avatar = [];
             {% for abc in pie_data %}
                 username = [];
                 count = [];
                 title = [];
                 leg_username = [];
+                avatar = [];
                 {% for lg in legend_data%}
                     {% if lg.team_id == abc.team_id %}
                         leg_username.push(('{{ lg.username }}').toUpperCase());
@@ -248,6 +365,7 @@
                 {% for xyz in pie_data1 %}
                     {% if xyz.team_id == abc.team_id %}
                         username.push(('{{ xyz.username }}').toUpperCase());
+                        avatar.push('{{ xyz.avatar }}');
                         count.push('{{ xyz.team_count }}');
                         title = '{{ xyz.title }}'
                     {% endif %}
@@ -255,10 +373,25 @@
                 firstname = title.split(" ");
                 $("#tabular").append("<div class='row'><div class='headd' style='border-radius: 35px; text-align: center; font-size: x-large;  height: 10%; background-image: linear-gradient(45deg, lightblue, transparent);'><i class='fa fa-users' style='color: #00BFFF;'></i>&nbsp;&nbsp;&nbsp;" + title + "'s Team</div><div class='col-md-6' id='" + firstname[0] + "odd'></div><div class='col-md-6' id='" + firstname[0] + "even'></div></div>");
                 for (i = 0; i < username.length; i++) {
-                    if (i % 2 == 0) {
-                        $("#" + firstname[0] + "odd").append("<div class='customcard'><img class='img1' src='{% static 'images.png' %}' alt='Avatar'><p class='col-md-10'>" + username[i] + "</p> <button class='button button5 col-md-2'>" + count[i] + "</button> </div>");
+                   if (i % 2 == 0) {
+                        if(avatar[i]=='None')
+                        {
+                        $("#" + firstname[0] + "odd").append("<div class='customcard'><img class='img1'   src='{% static 'images.png' %}' ><p class='col-md-10'>" + username[i] + "</p> <button class='button button5 col-md-2'>" + count[i] + "</button> </div>");
+                        }
+                        else
+                        {
+                        $("#" + firstname[0] + "odd").append("<div class='customcard'><img class='img1'  src='https://ats.vertisystem.com/uploads/avatar/80x80/"+avatar[i]+"'  ><p class='col-md-10'>" + username[i] + "</p> <button class='button button5 col-md-2'>" + count[i] + "</button> </div>");
+                        }
+
                     } else {
-                        $("#" + firstname[0] + "even").append("<div class='customcard'><img class='img1' src='{% static 'images.png' %}' alt='Avatar'><p class='col-md-10'>" + username[i] + "</p> <button class='button button5 col-md-2'>" + count[i] + "</button> </div>");
+                         if(avatar[i]=='None')
+                        {
+                        $("#" + firstname[0] + "even").append("<div class='customcard'><img class='img1'   src='{% static 'images.png' %}' ><p class='col-md-10'>" + username[i] + "</p> <button class='button button5 col-md-2'>" + count[i] + "</button> </div>");
+                        }
+                        else
+                        {
+                        $("#" + firstname[0] + "even").append("<div class='customcard'><img class='img1'  src='https://ats.vertisystem.com/uploads/avatar/80x80/"+avatar[i]+"'  ><p class='col-md-10'>" + username[i] + "</p> <button class='button button5 col-md-2'>" + count[i] + "</button> </div>");
+                        }
                     }
 
                 }
@@ -297,9 +430,9 @@
                 <div class="row">
                     <div class="col-md-4" style="overflow: hidden; padding-left: 0px;">
                         <div class="card">
-                            <div class="header" style="padding: 15px 15px 20px;text-align: center; margin-left: 60px;">
-                                <span class="user-banner"><marquee behaviour="slide" direction="left" scrollamount="7" style="width: 30%;" ><i class="fa fa-trophy fa-3x" style="width: 100%;"></i></marquee></span>
-                                <span style="text-shadow: 4px -1px black; color: black; text-align: right; font-size: xx-large"> Performer of the Week</span>
+                            <div class="custumhead">
+                                <span class="user-banner"><marquee behaviour="slide" direction="left" scrollamount="7" style="" ><i class="fa fa-trophy fa-3x" style="width: 100%;"></i></marquee></span>
+                                <span style="text-shadow: 3px 1px black; color: black; text-align: right; font-size: xx-large"> Performer of the Week</span>
                             </div>
                              {%  for performer in weak_topper %}
                                 <div class="content center-block">
@@ -336,19 +469,7 @@
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                     <style>
 
-                        .customcard {
-                            box-shadow: 0 17px 11px 0 rgba(0, 0, 0, 0.2);
-                            max-width: 452px;
-                            margin: auto;
-                            text-align: left;
-                            font-family: arial;
-                            display: flex;
-                            height: 7%;
-                            margin-bottom: 40px;
-                            margin-top: 20px;
-                            transform: skew(-20deg);
-                            background-image: linear-gradient(45deg, #0D97C6, transparent);
-                        }
+
 
                         .button {
                             background-color: #4CAF50; /* Green */
