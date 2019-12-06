@@ -53,7 +53,7 @@
     <script>
         setTimeout(function () {
             window.location.href = '{% url 'dash' %}';
-        }, 129000);
+        }, 40000);
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -113,7 +113,7 @@
             #dateee {
                 text-align: center;
                 padding: 13px;
-                font-size: x-large;
+                font-size: large;
                 color: #fff;
             }
 
@@ -136,7 +136,7 @@
             }
 
             .custumhead {
-                padding: 3px 23px 3px;
+                padding: 3px 0px 3px;
                 text-align: right;
             }
 
@@ -190,7 +190,7 @@
                 margin-bottom: 40px;
                 margin-top: 20px;
                 transform: skew(-20deg);
-                background-image: linear-gradient(45deg, #0D97C6, white);
+                background-image: linear-gradient(45deg, lightyellow 67%, white);
             }
 
             .card .content {
@@ -205,6 +205,7 @@
             .custumhead {
                 padding: 15px 15px 20px;
                 text-align: center;
+                margin-left: 20px;
             }
 
             .user-banner {
@@ -219,7 +220,7 @@
             }
 
             .customcard1 {
-                box-shadow: 0 17px 11px 0 rgba(0, 0, 0, 0.2);
+                box-shadow: 0 6px 6px 0 #fff;
                 max-width: 452px;
                 margin: auto;
                 text-align: left;
@@ -236,6 +237,7 @@
 
             .ali {
                 font-size: xx-large;
+                font-weight: bolder;
             }
 
             .img1 {
@@ -255,7 +257,7 @@
 
             .headd {
                 padding: 30px;
-                color: #fff;
+                color: #111;
             }
 
             p {
@@ -387,7 +389,7 @@
             font-weight: bolder;
         }
         .name {
-            color: #fff;
+            color: #111;
         }
     </style>
 
@@ -437,7 +439,7 @@
                     {% endif %}
                 {% endfor %}
                 firstname = title.split(" ");
-                $("#tabular").append("<div class='row'><div class='headd' style='border-radius: 35px; text-align: center; font-weight: bolder; font-size: xx-large;  height: 10%; background-image: linear-gradient(45deg, lightblue, transparent, lightblue);'><i class='fa fa-users' style='color: #00BFFF;'></i>&nbsp;&nbsp;&nbsp;" + title + "'s Team</div><div class='col-md-6' id='" + firstname[0] + "odd'></div><div class='col-md-6' id='" + firstname[0] + "even'></div></div>");
+                $("#tabular").append("<div class='row'><div class='headd' style='border-radius: 35px; text-align: center; font-weight: bolder; font-size: xx-large;  height: 10%; background-image: linear-gradient(45deg, lightyellow 67%, white);'><i class='fa fa-users' style='color: #111;'></i>&nbsp;&nbsp;&nbsp;" + title + "'s Team</div><div class='col-md-6' id='" + firstname[0] + "odd'></div><div class='col-md-6' id='" + firstname[0] + "even'></div></div>");
                 for (i = 0; i < username.length; i++) {
                    if (i % 2 == 0) {
                         if(avatar[i]=='None')
@@ -487,7 +489,7 @@
 <div class="wrapper" style="background: #111214;">
     <div class="main-panel" style="width: calc(100%); height: 98%;">
         <nav class="navbar navbar-default navbar-fixed"
-             style="background-image: linear-gradient(45deg, transparent 10%, #808080 100%);">
+             style="background-image: linear-gradient(45deg, lightyellow 67%, white);">
             <div class="container-fluid">
                 <div class="navbar-header" style="height: 73px;">
                     <a class="navbar-brand" href="#" style="">
