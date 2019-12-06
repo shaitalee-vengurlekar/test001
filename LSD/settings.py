@@ -25,7 +25,7 @@ SECRET_KEY = 'xy&9srmu9yll&v1(e8px9lculmyiou1nvtoi^q$778&pfnk9+6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['salty-dusk-52762.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['vertisystem-dashboard.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
