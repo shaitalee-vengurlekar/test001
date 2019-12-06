@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.ico' %}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-    <title>Light Bootstrap Dashboard by Creative Tim</title>
+    <title>Performance Dashboard</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
@@ -20,15 +19,9 @@
     <!--  Light Bootstrap Table core CSS    -->
     <link href="{% static 'assets/css/light-bootstrap-dashboard.css' %}" rel="stylesheet"/>
 
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{% static 'assets/css/demo.css' %}" rel="stylesheet"/>
-
-
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="{% static 'assets/css/pe-icon-7-stroke.css' %}" rel="stylesheet"/>
+{#    <link href="{% static 'assets/css/pe-icon-7-stroke.css' %}" rel="stylesheet"/>#}
     <script type="text/javascript">
         function display_c() {
             var refresh = 1000; // Refresh rate in milli seconds
@@ -46,7 +39,8 @@
             window.location.href = '{% url 'piedata' %}';
          }, 21000);
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
     <style>
 
         .card .content {
@@ -57,6 +51,7 @@
         .card {
             height: calc(100% - 108px);
             margin-bottom: 30px;
+            background: #2a2a2a;
         }
 
         .card .ct-chart {
@@ -88,7 +83,7 @@
         </nav>
 
 
-        <div class="content" style="padding: 8px 3px; min-height: calc(100% - 63px);">
+        <div class="content" style="padding: 8px 3px; min-height: calc(100% - 63px); background: #111214;">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12" style="width: 100%;">
@@ -161,19 +156,19 @@
             datasets: [{
                 label: "Submissions",
                 backgroundColor: [
+                    '#18E595',
+                    '#E518A8',
+                    '#84BB5C',
+                    '#D35D60',
+                    '#E5C318',
+                    '#3C18EB',
+                    '#A618E6',
+                    '#E56618',
                     '#7394CB',
                     '#E1974D',
                     '#84BB5C',
                     '#D35D60',
-                    '#818787',
-                    '#9066A7',
-                    '#AD6A58',
-                    '#CCC374',
-                    '#7394CB',
-                    '#E1974D',
-                    '#84BB5C',
-                    '#D35D60',
-                    '#818787',
+                    '#E6A718',
                     '#9066A7',
                     '#AD6A58',
                     '#CCC374',
@@ -183,19 +178,19 @@
                     '#AD6A58'
                 ],
                 borderColor: [
+                    '#18E595',
+                    '#E518A8',
+                    '#84BB5C',
+                    '#D35D60',
+                    '#E5C318',
+                    '#3C18EB',
+                    '#A618E6',
+                    '#E56618',
                     '#7394CB',
                     '#E1974D',
                     '#84BB5C',
                     '#D35D60',
-                    '#818787',
-                    '#9066A7',
-                    '#AD6A58',
-                    '#CCC374',
-                    '#7394CB',
-                    '#E1974D',
-                    '#84BB5C',
-                    '#D35D60',
-                    '#818787',
+                    '#E6A718',
                     '#9066A7',
                     '#AD6A58',
                     '#CCC374',
@@ -216,7 +211,7 @@
                 position: "top",
                 text: "Team's Submissions",
                 fontSize: 20,
-                fontColor: "#111"
+                fontColor: "#fff"
             },
             scales: {
                 xAxes: [{
@@ -230,7 +225,7 @@
                         padding: 0,
                         fontColor: '#000',
                         fontSize: 22,
-
+                        fontColor: '#fff',
                     },
                     scaleLabel: {
                         display: false,
@@ -241,8 +236,16 @@
                     ticks: {
                         beginAtZero: true,
                         fontStyle: 'bold',
-                        fontSize: 18
+                        fontSize: 18,
+                        fontColor: '#fff',
                     },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'No. of Submissions',
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        fontColor: '#fff',
+                    }
                 }],
             },
             legend: {
@@ -252,10 +255,12 @@
                 datalabels: {
                     anchor: 'end',
                     align: 'top',
+                    color: '#fff',
                     formatter: Math.round,
                     font: {
                         weight: 'bold',
-                        size: 18
+                        size: 18,
+                        color: '#fff'
                     }
                 }
             }
@@ -276,35 +281,44 @@
                 success: function (data) {
                     var res = [];
                     var res1 = [];
-                    {% for abc in name %}
+                    for(i=0;i < data.name.length;i++)
+                    {
                         var initials;
                         var name;
                         var names;
                         var string;
-                        name = '{{ abc }}'
+                        name = data.name[i];
                         names = name.split(' ');
                         if (names.length > 1) {
                             initials = names[names.length - 1].substring(0, 1).toUpperCase();
                             string = names[0] + " " + initials;
                             res.push(string);
                         } else {
-                            res.push('{{ abc }}');
+                            res.push(data.name[i]);
                         }
 
                         name = "";
                         names = "";
                         initials = "";
                         string = "";
-                    {% endfor %}
-                    {% for xyz in data %}
-                        var check = '{{ xyz }}';
+                    }
+                    console.log(data.data);
+
+                    var check = data.data;
+                    console.log(check);
+                    check = check.replace("[", "").replace("]", "");
+                    var check_array = check.split(',');
+                    for(var j=0;j<check_array.length;j++)
+                    {
+                        var check = check_array[j];
                         if (check == 0) {
                             res1.push(null);
                         } else {
                             res1.push(check);
                         }
-                        check = "";
-                    {% endfor %}
+                    }
+                    console.log('ajax'+res);
+                    console.log('ajax'+res1);
                     Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
                     Chart.defaults.global.defaultFontColor = '#292b2c';
                     var ctx = document.getElementById("myBarChart");
@@ -315,19 +329,19 @@
                             datasets: [{
                                 label: "Submissions",
                                 backgroundColor: [
+                                    '#18E595',
+                                    '#E518A8',
+                                    '#84BB5C',
+                                    '#D35D60',
+                                    '#E5C318',
+                                    '#3C18EB',
+                                    '#A618E6',
+                                    '#E56618',
                                     '#7394CB',
                                     '#E1974D',
                                     '#84BB5C',
                                     '#D35D60',
-                                    '#818787',
-                                    '#9066A7',
-                                    '#AD6A58',
-                                    '#CCC374',
-                                    '#7394CB',
-                                    '#E1974D',
-                                    '#84BB5C',
-                                    '#D35D60',
-                                    '#818787',
+                                    '#E6A718',
                                     '#9066A7',
                                     '#AD6A58',
                                     '#CCC374',
@@ -337,19 +351,19 @@
                                     '#AD6A58'
                                 ],
                                 borderColor: [
+                                    '#18E595',
+                                    '#E518A8',
+                                    '#84BB5C',
+                                    '#D35D60',
+                                    '#E5C318',
+                                    '#3C18EB',
+                                    '#A618E6',
+                                    '#E56618',
                                     '#7394CB',
                                     '#E1974D',
                                     '#84BB5C',
                                     '#D35D60',
-                                    '#818787',
-                                    '#9066A7',
-                                    '#AD6A58',
-                                    '#CCC374',
-                                    '#7394CB',
-                                    '#E1974D',
-                                    '#84BB5C',
-                                    '#D35D60',
-                                    '#818787',
+                                    '#E6A718',
                                     '#9066A7',
                                     '#AD6A58',
                                     '#CCC374',
@@ -370,7 +384,7 @@
                                 position: "top",
                                 text: "Team's Submissions",
                                 fontSize: 20,
-                                fontColor: "#111"
+                                fontColor: '#fff',
                             },
                             scales: {
                                 xAxes: [{
@@ -384,7 +398,7 @@
                                         padding: 0,
                                         fontColor: '#000',
                                         fontSize: 22,
-
+                                        fontColor: '#fff',
                                     },
                                     scaleLabel: {
                                         display: false,
@@ -395,8 +409,16 @@
                                     ticks: {
                                         beginAtZero: true,
                                         fontStyle: 'bold',
-                                        fontSize: 18
+                                        fontSize: 18,
+                                        fontColor: '#fff',
                                     },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'No. of Submissions',
+                                        fontSize: 20,
+                                        fontStyle: 'bold',
+                                        fontColor: '#fff',
+                                    }
                                 }],
                             },
                             legend: {
@@ -406,10 +428,12 @@
                                 datalabels: {
                                     anchor: 'end',
                                     align: 'top',
+                                    color: '#fff',
                                     formatter: Math.round,
                                     font: {
                                         weight: 'bold',
-                                        size: 18
+                                        size: 18,
+                                        color: '#fff'
                                     }
                                 }
                             }
@@ -424,7 +448,7 @@
 </body>
 
 <!--   Core JS Files   -->
-<script src="{% static 'assets/js/jquery.3.2.1.min.js' %}" type="text/javascript"></script>
+{#<script src="{% static 'assets/js/jquery.3.2.1.min.js' %}" type="text/javascript"></script>#}
 <script src="{% static 'assets/js/bootstrap.min.js' %}" type="text/javascript"></script>
 
 
@@ -436,8 +460,5 @@
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="{% static 'assets/js/light-bootstrap-dashboard.js' %}"></script>
-
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script src="{% static 'assets/js/demo.js' %}"></script>
 
 </html>
