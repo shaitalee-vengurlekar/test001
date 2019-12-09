@@ -37,9 +37,9 @@
     <script>
          setTimeout(function(){
             window.location.href = '{% url 'piedata' %}';
-         }, 21000);
+         }, 42000);
     </script>
-{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{% static 'assets/js/jquery.min.js' %}"></script>
     <style>
 
@@ -270,7 +270,7 @@
     <!-- Function for ajax calling -->
 
     $(function () {
-        var nre = setInterval(checkit, 3000);
+        var nre = setInterval(checkit, 8000);
 
         function checkit() {
             $.ajax({
