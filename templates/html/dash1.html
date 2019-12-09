@@ -499,7 +499,7 @@
                 var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };var prevFriday =new Date();
                 var prevMonday = new Date();
                 prevMonday.setDate(prevMonday.getDate() - (prevMonday.getDay() + 6) % 7 -7 );
-                prevFriday.setDate(prevFriday.getDate() - (prevMonday.getDay() + 5) % 7);
+                prevFriday.setDate(prevFriday.getDate() - (prevMonday.getDay() + 2) % 7);
                 console.log(prevMonday.toLocaleDateString("en-US", options));
                 console.log(prevFriday.toLocaleDateString("en-US", options));
                 $("#date1").append(prevMonday.toLocaleDateString("en-US", options));
