@@ -30,7 +30,7 @@ def dash(request):
             else:
                 flag = 0
         if (flag == 0):
-            dataall = manage_data(1)
+            dataall = manage_data(3)
             list1 = []
             list2 = []
             for emp in dataall:
@@ -59,7 +59,7 @@ def dash(request):
             else:
                 flag = 0
         if (flag == 0):
-            dataall = manage_data(1)
+            dataall = manage_data(3)
             list1 = []
             list2 = []
             for emp in dataall:
