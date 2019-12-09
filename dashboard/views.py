@@ -125,7 +125,7 @@ def high(request):
         print(flag)
         if (flag == 0):
             pie_data1 = ""
-            pie_data1 = team_member_data(1)
+            pie_data1 = team_member_data(3)
     with connection.cursor() as c4:
         c4.execute(
             """SELECT username,avatar,updated_by,count(interview) AS interview,count(offers) AS offers,count(submission) AS submission,created_at FROM 
