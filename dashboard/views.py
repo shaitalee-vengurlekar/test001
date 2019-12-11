@@ -16,7 +16,6 @@ def dictfetchall(cursor):
 
 def dash(request):
     if request.is_ajax():
-        print('------------------------------------ajax----------------------------------')
         list1 = []
         list2 = []
         graph_data = graph_data_fun()
@@ -30,22 +29,19 @@ def dash(request):
             else:
                 flag = 0
         if (flag == 0):
-            dataall = manage_data(3)
+            dataall = manage_data(1)
             list1 = []
             list2 = []
             for emp in dataall:
                 list1.append(emp.get("title"))
                 list2.append(emp.get("team_count"))
             list2 = simplejson.dumps(list2, use_decimal=True)
-            print('ajax', list1)
-            print('ajax', list2)
             data1 = {'name': list1, 'data': list2}
             return HttpResponse(json.dumps(data1))
         else:
             data1 = {'name': list1, 'data': list2}
             return HttpResponse(json.dumps(data1))
     else:
-        print('------------------------------------normal----------------------------------')
         list1 = []
         list2 = []
         graph_data = graph_data_fun()
@@ -59,7 +55,7 @@ def dash(request):
             else:
                 flag = 0
         if (flag == 0):
-            dataall = manage_data(3)
+            dataall = manage_data(1)
             list1 = []
             list2 = []
             for emp in dataall:
@@ -122,10 +118,9 @@ def high(request):
                 break;
             else:
                 flag = 0
-        print(flag)
         if (flag == 0):
             pie_data1 = ""
-            pie_data1 = team_member_data(3)
+            pie_data1 = team_member_data(1)
     with connection.cursor() as c4:
         c4.execute(
             """SELECT username,avatar,updated_by,count(interview) AS interview,count(offers) AS offers,count(submission) AS submission,created_at FROM 
@@ -220,7 +215,6 @@ def graph_data_fun():
             " DATE_FORMAT(al.created_at,'%m/%e/%Y') = DATE_FORMAT(SYSDATE(),'%m/%e/%Y') AND tem.status=1  )sub where submission=1  GROUP BY                             "
             " team_id)GROUP BY team_id order by team_id                                                                                               ")
         graph_data = dictfetchall(c)
-    print(graph_data, 'graph function---------------------')
     return graph_data
 
 
